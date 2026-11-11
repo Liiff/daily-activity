@@ -17,9 +17,10 @@ jobs:
 
       - name: Update file log dan commit
         run: |
-          date > activity.log
           git config user.name "Liiff"
           git config user.email "256220180+Liiff@users.noreply.github.com"
+          git pull --rebase
+          date > activity.log
           git add activity.log
           git commit -m "Update log harian"
           git push
