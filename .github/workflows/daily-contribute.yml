@@ -1,0 +1,25 @@
+name: Auto Contribution
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ambil isi repositori
+        uses: actions/checkout@v4
+
+      - name: Update file log dan commit
+        run: |
+          date > activity.log
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@://github.com"
+          git add activity.log
+          git commit -m "Update log harian"
+          git push
